@@ -442,8 +442,12 @@ def worker():
             progressbar(async_task, 13, 'Image processing ...')
 
         if 'vary' in goals:
-            if 'subtle' in uov_method:
+            if 'lesssubtle' in uov_method:
                 denoising_strength = 0.5
+            if 'lessstrong' in uov_method:
+                denoising_strength = 0.75
+            if 'subtle' in uov_method:
+                denoising_strength = 0.2
             if 'strong' in uov_method:
                 denoising_strength = 0.85
             if advanced_parameters.overwrite_vary_strength > 0:

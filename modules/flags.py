@@ -1,13 +1,15 @@
 disabled = 'Disabled'
 enabled = 'Enabled'
 subtle_variation = 'Vary (Subtle)'
+lesssubtle_variation = 'Vary (Less Subtle)'
+lessstrong_variation = 'Vary (Less Strong)'
 strong_variation = 'Vary (Strong)'
 upscale_15 = 'Upscale (1.5x)'
 upscale_2 = 'Upscale (2x)'
 upscale_fast = 'Upscale (Fast 2x)'
 
 uov_list = [
-    disabled, subtle_variation, strong_variation, upscale_15, upscale_2, upscale_fast
+    disabled, subtle_variation, lesssubtle_variation, lessstrong_variation, strong_variation, upscale_15, upscale_2, upscale_fast
 ]
 
 KSAMPLER_NAMES = ["euler", "euler_ancestral", "heun", "heunpp2","dpm_2", "dpm_2_ancestral",
