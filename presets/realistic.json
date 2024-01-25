@@ -1,15 +1,39 @@
 {
-    "default_model": "realisticStockPhoto_v10.safetensors",
-    "default_refiner": "",
+    "default_model": "0_SDXL_def_realisticStockPhoto_v20.safetensors",
+    "default_refiner": "1_SDXL_realistic_colossusProjectXLSFW_v53Trained.safetensors",
     "default_refiner_switch": 0.5,
+    "default_image_number": 1,
+    "default_max_image_number": 80,
+    "default_loras_min_weight": -5,
+    "default_loras_max_weight": 5,
     "default_loras": [
         [
-            "SDXL_FILM_PHOTOGRAPHY_STYLE_BetaV0.4.safetensors",
-            0.25
+            "2_realistic_realistic_film_photography.safetensors",
+            0.75
         ],
         [
-            "None",
+            "5_face_polyhedron_all_sdxl-000004.safetensors",
+            0.75
+        ],
+        [
+            "2_realistic_Essenz-series-by-AI_Characters_Style_BetterPhotography-v1.2-'Skynet'.safetensors",
+            0.7
+        ],
+        [
+            "2_realistic_Simplify_EasyFix.safetensors",
+            0.75
+        ],
+        [
+            "2_realistic_AdvancedEnhancer.safetensors",
             1.0
+        ],
+        [
+            "14_Background_Csal_Scenery_Xl.safetensors",
+            0.7
+        ],
+        [
+            "5_face_Beautify-Supermodel-SDXL.safetensors",
+            0.7
         ],
         [
             "None",
@@ -24,19 +48,23 @@
             1.0
         ]
     ],
-    "default_cfg_scale": 3.0,
+    "default_cfg_scale": 5.0,
     "default_sample_sharpness": 2.0,
     "default_sampler": "dpmpp_2m_sde_gpu",
     "default_scheduler": "karras",
     "default_performance": "Speed",
     "default_prompt": "",
-    "default_prompt_negative": "unrealistic, saturated, high contrast, big nose, painting, drawing, sketch, cartoon, anime, manga, render, CG, 3d, watermark, signature, label",
+    "default_prompt_negative": "saturated, high contrast, big nose, painting, drawing, sketch, cartoon, anime, manga, render, CG, 3d, watermark, signature, label",
     "default_styles": [
         "Fooocus V2",
-        "Fooocus Photograph",
-        "Fooocus Negative"
+        "Fooocus Enhance",
+        "Fooocus Sharp",
+        "Fooocus Masterpiece",
+        "MRE Bad Dream",
+        "Academia",
+        "Custom Hyper realistic preference Negative"
     ],
-    "default_aspect_ratio": "896*1152",
+    "default_aspect_ratio": "1200*900",
     "checkpoint_downloads": {
         "realisticStockPhoto_v10.safetensors": "https://huggingface.co/lllyasviel/fav_models/resolve/main/fav/realisticStockPhoto_v10.safetensors"
     },
