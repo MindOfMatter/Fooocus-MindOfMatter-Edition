@@ -8,6 +8,7 @@ import modules.config
 import fooocus_version
 import modules.html
 import modules.async_worker as worker
+import modules.exp_async_worker as exp_worker
 import modules.constants as constants
 import modules.flags as flags
 import modules.gradio_hijack as grh
@@ -22,6 +23,7 @@ from modules.private_logger import get_current_html_path
 from modules.ui_gradio_extensions import reload_javascript
 from modules.auth import auth_enabled, check_auth
 
+use_experimental_async_task_batch = False
 
 def generate_clicked(*args):
     import ldm_patched.modules.model_management as model_management
@@ -32,7 +34,11 @@ def generate_clicked(*args):
     # outputs=[progress_html, progress_window, progress_gallery, gallery]
 
     execution_start_time = time.perf_counter()
-    task = worker.AsyncTask(args=list(args))
+    print(f'use_experimental_async_task_batch: {use_experimental_async_task_batch}')
+    if use_experimental_async_task_batch:
+        task = exp_worker.ExpAsyncTask(args=list(args))
+    else:
+        task = worker.AsyncTask(args=list(args))
     finished = False
 
     yield gr.update(visible=True, value=modules.html.make_progress_html(1, 'Waiting for task to start ...')), \
@@ -40,7 +46,10 @@ def generate_clicked(*args):
         gr.update(visible=False, value=None), \
         gr.update(visible=False)
 
-    worker.async_tasks.append(task)
+    if use_experimental_async_task_batch:
+        exp_worker.async_tasks.append(task)
+    else:
+        worker.async_tasks.append(task)
 
     while not finished:
         time.sleep(0.01)
@@ -291,6 +300,11 @@ with shared.gradio_root:
                                                        show_progress=False).then(
                     lambda: None, _js='()=>{refresh_style_localization();}')
 
+            def use_experimental(enable_test_base_model_mode, enable_test_refiner_model_mode, enable_test_loras_mode):
+                global use_experimental_async_task_batch
+                use_experimental_async_task_batch = enable_test_base_model_mode or enable_test_refiner_model_mode or enable_test_loras_mode
+                # Add any additional logic you need here
+        
             with gr.Tab(label='Model'):
                 with gr.Group():
                     with gr.Row():
@@ -307,8 +321,18 @@ with shared.gradio_root:
 
                     refiner_model.change(lambda x: gr.update(visible=x != 'None'),
                                          inputs=refiner_model, outputs=refiner_switch, show_progress=False, queue=False)
-
+                    with gr.Row():
+                        enable_test_base_model_mode = gr.Checkbox(label='Test for each base model', value=False)
+                        enable_test_refiner_model_mode = gr.Checkbox(label='Test for each refiner model', value=False)
+                        
                 with gr.Group():
+                    with gr.Row():
+                        enable_test_loras_mode = gr.Checkbox(label='Test for each enabled lora', value=False)
+                        
+                        enable_test_base_model_mode.change(use_experimental, inputs=[enable_test_base_model_mode, enable_test_refiner_model_mode, enable_test_loras_mode])
+                        enable_test_refiner_model_mode.change(use_experimental, inputs=[enable_test_base_model_mode, enable_test_refiner_model_mode, enable_test_loras_mode])
+                        enable_test_loras_mode.change(use_experimental, inputs=[enable_test_base_model_mode, enable_test_refiner_model_mode, enable_test_loras_mode])
+                    
                     lora_ctrls = []
 
                     for i, (n, v) in enumerate(modules.config.default_loras):
@@ -521,7 +545,7 @@ with shared.gradio_root:
 
         ctrls = [
             prompt, negative_prompt, style_selections,
-            performance_selection, aspect_ratios_selection, image_number, image_seed, sharpness, guidance_scale
+            performance_selection, aspect_ratios_selection, image_number, enable_test_loras_mode, enable_test_base_model_mode, enable_test_refiner_model_mode, image_seed, sharpness, guidance_scale
         ]
 
         ctrls += [base_model, refiner_model, refiner_switch] + lora_ctrls
