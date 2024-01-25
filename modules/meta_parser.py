@@ -143,12 +143,14 @@ def load_parameter_button_click(raw_prompt_txt, is_generating):
                 w = float(w)
                 results.append(n)  # Update LoRA model
                 results.append(w)  # Update LoRA weight
+                results.append(True)  # Enable the LoRA setting by default
             except Exception as e:
-                # If there's an error parsing, log it or handle it as needed
-                print(f"Error parsing {lora_key}: {e}")
-                results.extend([gr.update(), gr.update()])  # Keep existing settings unchanged
+                results.append("None")  # Update LoRA model
+                results.append(1.0)  # Update LoRA weight
+                results.append(True)  # Enable the LoRA setting by default
         else:
-            # If the LoRA setting is not in the JSON, keep the existing settings unchanged
-            results.extend([gr.update(), gr.update()])
+            results.append("None")  # Update LoRA model
+            results.append(1.0)  # Update LoRA weight
+            results.append(True)  # Enable the LoRA setting by default
 
     return results
