@@ -137,6 +137,14 @@ def worker():
         performance_selection = args.pop()
         aspect_ratios_selection = args.pop()
         image_number = args.pop()
+        
+        enable_test_loras_mode = args.pop()
+        print(f"enable_test_loras_mode: {enable_test_loras_mode}")
+        enable_test_base_model_mode = args.pop()
+        print(f"enable_test_base_model_mode: {enable_test_base_model_mode}")
+        enable_test_refiner_model_mode = args.pop()
+        print(f"enable_test_refiner_model_mode: {enable_test_refiner_model_mode}")
+        
         image_seed = args.pop()
         sharpness = args.pop()
         guidance_scale = args.pop()
