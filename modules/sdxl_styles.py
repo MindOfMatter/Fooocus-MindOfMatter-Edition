@@ -28,6 +28,8 @@ styles = {}
 styles_files = get_files_from_folder(styles_path, ['.json'])
 
 for x in ['sdxl_styles_fooocus.json',
+          'sdxl_styles_custom.json',
+          'sdxl_styles_xxx_custom.json',
           'sdxl_styles_sai.json',
           'sdxl_styles_mre.json',
           'sdxl_styles_twri.json',
