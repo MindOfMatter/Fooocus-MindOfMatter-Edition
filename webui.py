@@ -308,8 +308,8 @@ with shared.gradio_root:
             with gr.Tab(label='Model'):
                 with gr.Group():
                     with gr.Row():
-                        base_model = gr.Dropdown(label='Base Model (SDXL only)', choices=modules.config.model_filenames, value=modules.config.default_base_model_name, show_label=True)
-                        refiner_model = gr.Dropdown(label='Refiner (SDXL or SD 1.5)', choices=['None'] + modules.config.model_filenames, value=modules.config.default_refiner_model_name, show_label=True)
+                        base_model = gr.Dropdown(label='Base Model (SDXL only)', choices=modules.config.model_filenames, value=modules.config.default_base_model_name, show_label=True, elem_classes=['model_selections'])
+                        refiner_model = gr.Dropdown(label='Refiner (SDXL or SD 1.5)', choices=['None'] + modules.config.model_filenames, value=modules.config.default_refiner_model_name, show_label=True, elem_classes=['model_selections'])
 
                     refiner_switch = gr.Slider(label='Refiner Switch At', minimum=0.1, maximum=1.0, step=0.0001,
                                                info='Use 0.4 for SD1.5 realistic models; '
@@ -339,7 +339,7 @@ with shared.gradio_root:
                         with gr.Row():
                             lora_enable = gr.Checkbox(label='Enable', value=True, elem_classes='lora_enable', container=True)
                             lora_model = gr.Dropdown(label=f'LoRA {i + 1}',
-                                                     choices=['None'] + modules.config.lora_filenames, value=n)
+                                                     choices=['None'] + modules.config.lora_filenames, value=n, elem_classes=['model_selections'])
                             lora_weight = gr.Slider(label='Weight', minimum=modules.config.default_loras_min_weight, maximum=modules.config.default_loras_max_weight, step=0.01, value=v,
                                                     elem_classes='lora_weight')
                             lora_ctrls += [lora_model, lora_weight, lora_enable]
