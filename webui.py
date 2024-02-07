@@ -21,6 +21,7 @@ from modules.sdxl_styles import legal_style_names
 from modules.private_logger import get_current_html_path
 from modules.ui_gradio_extensions import reload_javascript
 from modules.auth import auth_enabled, check_auth
+from plugins.magic_prompt.MagicPrompt import build_ui
 
 
 def generate_clicked(*args):
@@ -208,6 +209,10 @@ with shared.gradio_root:
                                     value=flags.desc_type_photo)
                                 desc_btn = gr.Button(value='Describe this Image into Prompt')
                                 gr.HTML('<a href="https://github.com/lllyasviel/Fooocus/discussions/1363" target="_blank">\U0001F4D4 Document</a>')
+                    with gr.TabItem(label='Prompt generator') as prompt_gen_tab:
+                        with gr.Row(elem_classes=['prompt_generation']):
+                            build_ui()
+                                
             switch_js = "(x) => {if(x){viewer_to_bottom(100);viewer_to_bottom(500);}else{viewer_to_top();} return x;}"
             down_js = "() => {viewer_to_bottom();}"
 
