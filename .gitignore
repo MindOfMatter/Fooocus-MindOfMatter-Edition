@@ -61,3 +61,4 @@ checkpoints-disabled
 .venv
 outputs-disabled
 plugins
+models/checkpoints/put_checkpoints_here
