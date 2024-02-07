@@ -1,0 +1,16 @@
+[camera] 
+is capturing 
+[type of content] 
+of : 
+{prompt}
+. Then, a 
+[person],
+with a 
+[type of body] 
+body, is 
+[action] 
+with her 
+[type of face] 
+face while showing her 
+[emphasis plan]. 
+[plugins]
