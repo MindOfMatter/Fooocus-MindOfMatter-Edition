@@ -112,6 +112,13 @@ progress::after {
     margin-left: -5px !important;
 }
 
+.prompt_generation .text_input_generation {
+  flex: auto;
+}
+
+.prompt_generation .text_input_generation div {
+  flex-grow: 10;
+}
 '''
 progress_html = '''
 <div class="loader-container">
