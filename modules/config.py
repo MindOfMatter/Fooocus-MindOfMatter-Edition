@@ -339,6 +339,7 @@ possible_preset_keys = [
     "default_prompt_negative",
     "default_styles",
     "default_aspect_ratio",
+    "use_gpu_model_loader",
     "checkpoint_downloads",
     "embeddings_downloads",
     "lora_downloads",
