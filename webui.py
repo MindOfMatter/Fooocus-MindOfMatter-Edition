@@ -130,6 +130,10 @@ with shared.gradio_root:
                     stop_button.click(stop_clicked, outputs=[skip_button, stop_button],
                                       queue=False, show_progress=False, _js='cancelGenerateForever')
                     skip_button.click(skip_clicked, queue=False, show_progress=False)
+           
+            with gr.Row():
+                gr.Markdown("[Find Online prompt help](https://civitai.com/articles/2517/stable-diffusion-prompt-ultimate-beginners-guide-october-2023)")
+                           
             with gr.Row(elem_classes='advanced_check_row'):
                 input_image_checkbox = gr.Checkbox(label='Input Image', value=False, container=False, elem_classes='min_check')
                 advanced_checkbox = gr.Checkbox(label='Advanced', value=modules.config.default_advanced_checkbox, container=False, elem_classes='min_check')
@@ -141,7 +145,8 @@ with shared.gradio_root:
                                 uov_input_image = grh.Image(label='Drag above image to here', source='upload', type='numpy')
                             with gr.Column():
                                 uov_method = gr.Radio(label='Upscale or Variation:', choices=flags.uov_list, value=flags.disabled)
-                                gr.HTML('<a href="https://github.com/lllyasviel/Fooocus/discussions/390" target="_blank">\U0001F4D4 Document</a>')
+                                gr.Markdown("[Find Online Upscaler](https://civitai.com/search/models?modelType=TextualInversion&sortBy=models_v5%3Ametrics.downloadCount%3Adesc)")
+
                     with gr.TabItem(label='Image Prompt') as ip_tab:
                         with gr.Row():
                             ip_images = []
@@ -307,6 +312,12 @@ with shared.gradio_root:
 
                     refiner_model.change(lambda x: gr.update(visible=x != 'None'),
                                          inputs=refiner_model, outputs=refiner_switch, show_progress=False, queue=False)
+                    with gr.Row():
+                        gr.Markdown("[Find Online Base Model](https://civitai.com/search/models?baseModel=SDXL%200.9&baseModel=SDXL%201.0&baseModel=SDXL%201.0%20LCM&baseModel=SDXL%20Distilled&baseModel=SDXL%20Turbo&modelType=Checkpoint&sortBy=models_v5%3Ametrics.downloadCount%3Adesc)")
+                        gr.Markdown("[Find Online Refiner](https://civitai.com/search/models?modelType=Checkpoint&sortBy=models_v5%3Ametrics.downloadCount%3Adesc)")
+                    with gr.Group():
+                        with gr.Row():
+                            gr.Markdown("[Find Online Loras](https://civitai.com/search/models?modelType=LORA&modelType=LoCon&sortBy=models_v5%3Ametrics.downloadCount%3Adesc)")
 
                 with gr.Group():
                     lora_ctrls = []
@@ -381,6 +392,9 @@ with shared.gradio_root:
                                                                info='Set as negative number to disable. For developer debugging.')
                         disable_preview = gr.Checkbox(label='Disable Preview', value=False,
                                                       info='Disable preview during generation.')
+                        with gr.Row():
+                            gr.Markdown("[Find Online Embedding](https://civitai.com/search/models?modelType=TextualInversion&sortBy=models_v5%3Ametrics.downloadCount%3Adesc)")
+                            gr.Markdown("[Find Online Hypernetwork](https://civitai.com/search/models?modelType=Hypernetwork&sortBy=models_v5%3Ametrics.downloadCount%3Adesc)")
 
                     with gr.Tab(label='Control'):
                         debugging_cn_preprocessor = gr.Checkbox(label='Debug Preprocessors', value=False,
