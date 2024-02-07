@@ -5,10 +5,13 @@ import ldm_patched.modules.checkpoint_pickle
 import safetensors.torch
 import numpy as np
 from PIL import Image
+import modules.config
 
 def load_torch_file(ckpt, safe_load=False, device=None):
     if device is None:
         device = torch.device("cpu")
+    if modules.config.use_gpu_model_loader: 
+        device = torch.device("cuda")
     if ckpt.lower().endswith(".safetensors"):
         sd = safetensors.torch.load_file(ckpt, device=device.type)
     else:
