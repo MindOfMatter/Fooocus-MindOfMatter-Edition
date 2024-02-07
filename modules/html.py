@@ -128,6 +128,29 @@ progress::after {
   display: none;
 }
 
+.lora_enable {
+  min-width: min(0px, 100%) !important;
+}
+
+.lora_enable label {
+  height: 100%;
+}
+
+.lora_enable label input {
+  margin: auto;
+}
+
+.lora_enable label span {
+  display: none;
+}
+
+.prompt_generation .text_input_generation {
+  flex: auto;
+}
+
+.prompt_generation .text_input_generation div {
+  flex-grow: 10;
+}
 '''
 progress_html = '''
 <div class="loader-container">
