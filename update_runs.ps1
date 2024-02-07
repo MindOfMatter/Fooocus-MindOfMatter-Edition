@@ -2,6 +2,15 @@ clear
 
 # Change to the script's directory
 $currentPath = Split-Path -Parent -Path $MyInvocation.MyCommand.Definition
+
+# Run the last_preset_generator.ps1 script
+$lastPresetGeneratorPath = Join-Path -Path $currentPath -ChildPath "last_preset_generator.ps1"
+if (Test-Path -Path $lastPresetGeneratorPath) {
+    & $lastPresetGeneratorPath
+} else {
+    Write-Host "last_preset_generator.ps1 not found at path: $lastPresetGeneratorPath"
+}
+
 $scriptPath = Split-Path -Parent -Path $currentPath
 Set-Location -Path $scriptPath
 
@@ -27,8 +36,19 @@ for ($i = 0; $i -lt $jsonFiles.Count; $i++) {
     Write-Host "$($i+1): $($jsonFiles[$i].Name)"
 }
 
+# Find the index of last.json
+$userChoice = 0
+for ($i = 0; $i -lt $jsonFiles.Count; $i++) {
+    if ($jsonFiles[$i].Name -eq "last.json") {
+        $userChoice = $i + 1
+        break
+    }
+}
+
+# overwrite it to 0 if choose from prompt (not default last json)
+#[int]$userChoice = 0
+
 # User input to choose a file
-[int]$userChoice = 0
 if ($userChoice -eq 0) {
     while ($userChoice -lt 1 -or $userChoice -gt $jsonFiles.Count) {
         $userChoice = Read-Host "Enter the number of the preset you want to choose"
