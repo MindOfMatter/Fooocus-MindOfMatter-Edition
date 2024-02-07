@@ -12,7 +12,6 @@ from extras.expansion import FooocusExpansion
 from ldm_patched.modules.model_base import SDXL, SDXLRefiner
 from modules.sample_hijack import clip_separate
 
-
 model_base = core.StableDiffusionModel()
 model_refiner = core.StableDiffusionModel()
 
@@ -100,7 +99,6 @@ def refresh_refiner_model(name):
         model_refiner.clip = None
 
     return
-
 
 @torch.no_grad()
 @torch.inference_mode()

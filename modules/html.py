@@ -112,14 +112,6 @@ progress::after {
     margin-left: -5px !important;
 }
 
-.lora_enable {
-  min-width: min(0px, 100%) !important;
-}
-
-.lora_enable label {
-  height: 100%;
-}
-
 .lora_enable label input {
   margin: auto;
 }

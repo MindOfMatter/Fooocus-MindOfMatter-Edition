@@ -155,8 +155,7 @@ with shared.gradio_root:
                                 uov_input_image = grh.Image(label='Drag above image to here', source='upload', type='numpy')
                             with gr.Column():
                                 uov_method = gr.Radio(label='Upscale or Variation:', choices=flags.uov_list, value=flags.disabled)
-                                gr.Markdown("[Find Online Upscaler](https://civitai.com/search/models?modelType=TextualInversion&sortBy=models_v5%3Ametrics.downloadCount%3Adesc)")
-
+                                gr.HTML('<a href="https://github.com/lllyasviel/Fooocus/discussions/390" target="_blank">\U0001F4D4 Document</a>')
                     with gr.TabItem(label='Image Prompt') as ip_tab:
                         with gr.Row():
                             ip_images = []
@@ -226,7 +225,7 @@ with shared.gradio_root:
                     with gr.TabItem(label='Prompt generator') as prompt_gen_tab:
                         with gr.Row(elem_classes=['prompt_generation']):
                             build_ui()
-                                
+                            
             switch_js = "(x) => {if(x){viewer_to_bottom(100);viewer_to_bottom(500);}else{viewer_to_top();} return x;}"
             down_js = "() => {viewer_to_bottom();}"
 
@@ -281,7 +280,7 @@ with shared.gradio_root:
                 style_sorter.try_load_sorted_styles(
                     style_names=legal_style_names,
                     default_selected=modules.config.default_styles)
-
+                
                 style_search_bar = gr.Textbox(show_label=False, container=False,
                                               placeholder="\U0001F50E Type here to search styles ...",
                                               value="",
@@ -321,7 +320,7 @@ with shared.gradio_root:
                         base_model = gr.Dropdown(label='Base Model (SDXL only)', choices=modules.config.model_filenames, value=modules.config.default_base_model_name, show_label=True, elem_classes=['model_selections'])
                         switch_model_button = gr.Button(label="", value="⇔", elem_classes='type_column', elem_id='switch_model_button', visible=True)
                         refiner_model = gr.Dropdown(label='Refiner (SDXL or SD 1.5)', choices=['None'] + modules.config.model_filenames, value=modules.config.default_refiner_model_name, show_label=True, elem_classes=['model_selections'])
-s                        
+                        
                         # Function to switch the values of the base_model and refiner_model dropdowns
                         def switch_models(base_model_value, refiner_model_value):
                             # Simply return the values in reversed order
@@ -346,10 +345,17 @@ s
                     with gr.Row():
                         enable_test_base_model_mode = gr.Checkbox(label='Test for each base model', value=False)
                         enable_test_refiner_model_mode = gr.Checkbox(label='Test for each refiner model', value=False)
+                    
                     with gr.Row():
-                        gr.Markdown("[Find Online Loras](https://civitai.com/search/models?modelType=LORA&modelType=LoCon&sortBy=models_v5%3Ametrics.downloadCount%3Adesc)")
-
+                        gr.Markdown("[Find Online Base Model](https://civitai.com/search/models?baseModel=SDXL%200.9&baseModel=SDXL%201.0&baseModel=SDXL%201.0%20LCM&baseModel=SDXL%20Distilled&baseModel=SDXL%20Turbo&modelType=Checkpoint&sortBy=models_v5%3Ametrics.downloadCount%3Adesc)")
+                        gr.Markdown("[Find Online Refiner](https://civitai.com/search/models?modelType=Checkpoint&sortBy=models_v5%3Ametrics.downloadCount%3Adesc)")
+                    with gr.Row():
+                        enable_test_base_model_mode = gr.Checkbox(label='Test for each base model', value=False)
+                        enable_test_refiner_model_mode = gr.Checkbox(label='Test for each refiner model', value=False)
+                        
                 with gr.Group():
+                    with gr.Row():
+                         gr.Markdown("[Find Online Loras](https://civitai.com/search/models?modelType=LORA&modelType=LoCon&sortBy=models_v5%3Ametrics.downloadCount%3Adesc)")
                     with gr.Row():
                         enable_test_loras_mode = gr.Checkbox(label='Test for each enabled lora', value=False)
                         

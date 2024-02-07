@@ -29,7 +29,6 @@ except Exception as e:
     print('3. There is no "," before the last "}".')
     print('4. All key/value formats are correct.')
 
-
 def try_load_deprecated_user_path_config():
     global config_dict
 
@@ -81,13 +80,14 @@ try_load_deprecated_user_path_config()
 
 preset = args_manager.args.preset
 
+                
 if isinstance(preset, str):
     preset_path = os.path.abspath(f'./presets/{preset}.json')
     try:
         if os.path.exists(preset_path):
-            with open(preset_path, "r", encoding="utf-8") as json_file:
+            with open(preset_path, "r", encoding="utf-8-sig") as json_file:
                 config_dict.update(json.load(json_file))
-                print(f'Loaded preset: {preset_path}')
+            print(f'Loaded preset: {preset_path}')
         else:
             raise FileNotFoundError
     except Exception as e:
@@ -402,7 +402,7 @@ available_aspect_ratios = get_config_item_or_set_default(
     default_value=[
         '64*64', '128*128', '256*256', '512*512', '1024*1024',
         '704*1408', '704*1344', '768*1344', '768*1280', '832*1216', '832*1152',
-        '896*1152', '896*1088', '960*1088', '960*1024', '1024*1024', '1024*960',
+        '896*1152', '896*1088', '960*1088', '960*1024', '1024*960',
         '1088*960', '1088*896', '1152*896', '1152*832', '1216*832', '1280*768',
         '1344*768', '1344*704', '1408*704', '1472*704', '1536*640', '1600*640',
         '1664*576', '1728*576', '1920*1080', '800*600', '600*800',
@@ -487,6 +487,7 @@ possible_preset_keys = [
     "default_aspect_ratio",
     "use_cleanup_model_previews",
     "use_add_model_previews",
+    "use_gpu_model_loader",
     "use_model_cache",
     "checkpoint_downloads",
     "embeddings_downloads",
