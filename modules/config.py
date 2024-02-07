@@ -451,6 +451,11 @@ use_gpu_model_loader = get_config_item_or_set_default(
     default_value=True,
     validator=lambda x: x == False or x == True
 )
+use_model_cache = get_config_item_or_set_default(
+    key='use_model_cache',
+    default_value=True,
+    validator=lambda x: x == False or x == True
+)
 example_inpaint_prompts = get_config_item_or_set_default(
     key='example_inpaint_prompts',
     default_value=[
@@ -480,8 +485,9 @@ possible_preset_keys = [
     "default_prompt_negative",
     "default_styles",
     "default_aspect_ratio",
-    "use_cleanup_model_previews"
+    "use_cleanup_model_previews",
     "use_add_model_previews",
+    "use_model_cache",
     "checkpoint_downloads",
     "embeddings_downloads",
     "lora_downloads",
