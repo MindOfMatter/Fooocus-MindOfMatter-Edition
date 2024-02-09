@@ -2,6 +2,15 @@ import os
 import sys
 import ssl
 
+
+def empty_cached():
+    import gc
+    import torch
+    gc.collect()
+    torch.cuda.empty_cache()
+    
+empty_cached()
+
 print('[System ARGV] ' + str(sys.argv))
 
 root = os.path.dirname(os.path.abspath(__file__))
