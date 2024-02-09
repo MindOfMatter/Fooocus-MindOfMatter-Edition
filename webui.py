@@ -345,14 +345,6 @@ with shared.gradio_root:
                     with gr.Row():
                         enable_test_base_model_mode = gr.Checkbox(label='Test for each base model', value=False)
                         enable_test_refiner_model_mode = gr.Checkbox(label='Test for each refiner model', value=False)
-                    
-                    with gr.Row():
-                        gr.Markdown("[Find Online Base Model](https://civitai.com/search/models?baseModel=SDXL%200.9&baseModel=SDXL%201.0&baseModel=SDXL%201.0%20LCM&baseModel=SDXL%20Distilled&baseModel=SDXL%20Turbo&modelType=Checkpoint&sortBy=models_v5%3Ametrics.downloadCount%3Adesc)")
-                        gr.Markdown("[Find Online Refiner](https://civitai.com/search/models?modelType=Checkpoint&sortBy=models_v5%3Ametrics.downloadCount%3Adesc)")
-                    with gr.Row():
-                        enable_test_base_model_mode = gr.Checkbox(label='Test for each base model', value=False)
-                        enable_test_refiner_model_mode = gr.Checkbox(label='Test for each refiner model', value=False)
-                        
                 with gr.Group():
                     with gr.Row():
                          gr.Markdown("[Find Online Loras](https://civitai.com/search/models?modelType=LORA&modelType=LoCon&sortBy=models_v5%3Ametrics.downloadCount%3Adesc)")
